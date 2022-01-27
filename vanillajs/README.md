@@ -45,6 +45,8 @@ module.exports = {
 ```
 
 ## 5. Vscode Setting
+- extension `eslint`, `prettier` 를 설치하고 아래와 같이 설정 코드를 추가합니다.
+
 ```
 {
   // ...

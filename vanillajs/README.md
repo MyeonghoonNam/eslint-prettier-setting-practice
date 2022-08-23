@@ -51,23 +51,17 @@ module.exports = {
 {
   // ...
 
-  "eslint.alwaysShowStatus": true,
-  "editor.formatOnSave": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.formatOnSave": true
-  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.format.enable": false,
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ],
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 
+  // ...
+}
+  
   // ...
 }
 ```

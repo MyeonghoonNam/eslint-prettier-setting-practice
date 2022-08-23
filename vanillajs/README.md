@@ -1,16 +1,20 @@
 # Vanilla JS
 
 ## 1. package init
+
 ```
 npm init -y
 ```
 
 ## 2. install library
+
 ```
 npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier
+npx install-peerdeps --dev eslint-config-airbnb-base // airbnb js style 적용
 ```
 
 ## 3. make `.eslintrc.json`
+
 - eslint 설정의 경우 협업 환경에 따라 여러 조건을 통해 유동적으로 수정합니다.
 
 ```
@@ -31,7 +35,8 @@ npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier
 }
 ```
 
-## 4. make `.prettierrc`
+## 4. make `.prettierrc.json`
+
 - prettier 설정의 경우 협업 환경에 따라 여러 조건을 통해 유동적으로 수정합니다.
 
 ```
@@ -44,11 +49,11 @@ npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier
   "trailingComma": "all",
   "bracketSpacing": true,
   "arrowParens": "always",
-  "endOfLine": "lf"
 }
 ```
 
 ## 5. Vscode Setting
+
 - extension `eslint`, `prettier` 를 설치하고 아래와 같이 설정 코드를 추가합니다.
 
 ```
@@ -56,12 +61,19 @@ npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier
   // ...
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
-  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "eslint.enable": true,
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
 
   // ...
 }

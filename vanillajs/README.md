@@ -7,26 +7,28 @@ npm init -y
 
 ## 2. install library
 ```
-npm i -D eslint prettier eslint-config-prettier
+npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier
 ```
 
-## 3. make `.eslintrc.js`
+## 3. make `.eslintrc.json`
 - eslint 설정의 경우 협업 환경에 따라 여러 조건을 통해 유동적으로 수정합니다.
 
 ```
-module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
+{
+  "env": {
+    "browser": true,
+    "es2021": true
   },
-  extends: ["eslint:recommended", "prettier"],
-  parserOptions: {
-    sourceType: "module",
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
+  "rules": {
+    "prettier/prettier": ["error"]
+  }
 }
-
 ```
 
 ## 4. make `.prettierrc`
@@ -34,13 +36,15 @@ module.exports = {
 
 ```
 {
-  "singleQuote": true,
-  "semi": true,
-  "useTabs": false,
-  "tabWidth": 2,
   "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": true,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
   "bracketSpacing": true,
-  "arrowParens": "avoid"
+  "arrowParens": "always",
+  "endOfLine": "lf"
 }
 ```
 
@@ -59,9 +63,6 @@ module.exports = {
   "eslint.alwaysShowStatus": true,
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 
-  // ...
-}
-  
   // ...
 }
 ```

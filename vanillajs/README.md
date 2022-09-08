@@ -68,7 +68,6 @@ npx install-peerdeps --dev eslint-config-airbnb-base // airbnb js style 적용
   "eslint.alwaysShowStatus": true,
   "eslint.enable": true,
   "eslint.validate": [
-    "html",
     "javascript",
     "javascriptreact",
     "typescript",

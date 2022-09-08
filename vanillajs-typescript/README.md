@@ -29,9 +29,12 @@ npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
-  "rules": {
-    "prettier/prettier": ["error"]
-  }
+  "prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		]
 }
 ```
 

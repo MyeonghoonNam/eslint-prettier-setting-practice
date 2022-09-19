@@ -162,3 +162,72 @@ $npx install-peerdeps --dev eslint-config-airbnb
  ...
 }
 ```
+
+---
+
+# 번외
+
+## Emotion
+
+# step 1) Emotion Install
+
+```
+$npm i @emotion/react
+$npm i @emotion/styled
+$npm i @emotion/babel-preset-css-prop
+
+$npm i -D @emotion/babel-plugin
+```
+
+# step 2) Craco Install
+
+```
+$npm i @craco/craco
+
+// npm v7 이상인 경우
+$npm i @craco/craco --force
+```
+
+# step 3) package.json scripts 태그 수정
+
+```
+"scripts": {
+  ...
+
+	"start": "craco start",
+	"build": "craco build",
+	"test": "craco test",
+
+	...
+}
+```
+
+# step 4) craco.config.js setup
+
+```
+// craco.config.js
+module.exports = {
+  babel: {
+    presets: ['@emotion/babel-preset-css-prop'],
+  },
+}
+```
+
+# step 5) tsconfig.json update
+
+```
+...
+
+"jsxImportSource": "@emotion/react",
+
+...
+```
+
+## Storybook
+
+# step 1) Storybook setup
+
+```
+$npx sb init
+$npm run storybook
+```

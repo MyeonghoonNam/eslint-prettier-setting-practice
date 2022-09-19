@@ -1,4 +1,4 @@
-import Box, { IProps } from '../components/Box';
+import Box, { IProps } from '@components/Box';
 
 export default {
 	title: 'Components/Box',

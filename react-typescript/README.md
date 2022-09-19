@@ -103,7 +103,8 @@ $npx install-peerdeps --dev eslint-config-airbnb
 			}
 		],
 		"react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": "warn"
+		"react-hooks/exhaustive-deps": "warn",
+		"react/jsx-props-no-spreading": "off"
 	},
 	"settings": {
 		"import/resolver": {
@@ -169,7 +170,7 @@ $npx install-peerdeps --dev eslint-config-airbnb
 
 ## Emotion
 
-# step 1) Emotion Install
+### step 1) Emotion Install
 
 ```
 $npm i @emotion/react
@@ -179,7 +180,7 @@ $npm i @emotion/babel-preset-css-prop
 $npm i -D @emotion/babel-plugin
 ```
 
-# step 2) Craco Install
+### step 2) Craco Install
 
 ```
 $npm i @craco/craco
@@ -188,7 +189,7 @@ $npm i @craco/craco
 $npm i @craco/craco --force
 ```
 
-# step 3) package.json scripts 태그 수정
+### step 3) package.json scripts 태그 수정
 
 ```
 "scripts": {
@@ -202,7 +203,7 @@ $npm i @craco/craco --force
 }
 ```
 
-# step 4) craco.config.js setup
+### step 4) craco.config.js setup
 
 ```
 // craco.config.js
@@ -213,7 +214,7 @@ module.exports = {
 }
 ```
 
-# step 5) tsconfig.json update
+### step 5) tsconfig.json update
 
 ```
 ...
@@ -225,9 +226,114 @@ module.exports = {
 
 ## Storybook
 
-# step 1) Storybook setup
+### step 1) Storybook setup
 
 ```
 $npx sb init
 $npm run storybook
+```
+
+## CRA + Typescript 절대경로 설정
+
+### step 1) Craco Install
+
+```
+$npm i @craco/craco // scripts 태그는 위에서 언급한바와 같이 변경
+$npm i -D craco-alias
+```
+
+### step 2) tsconfig.paths.json update
+
+```
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			// ex)
+			// "@components/*": ["./components/*"]
+			// "@assets/*": ["./assets/*"],
+			// "@styles/*": ["./styles/*"],
+			// "@contexts/*": ["./contexts/*"],
+			// "@hooks/*": ["./hooks/*"],
+			// "@utils/*": ["./utils/*"]
+		}
+	}
+}
+
+```
+
+### step 3) craco.config.js update
+
+```
+// craco.cofig.js
+const cracoAlias = require('craco-alias')
+
+module.exports = {
+  ...
+
+  plugins: [
+    {
+      plugin: cracoAlias,
+      options: {
+        source: 'tsconfig',
+        baseUrl: './src',
+        tsConfigPath: './tsconfig.paths.json',
+      },
+    },
+  ],
+}
+```
+
+### step 4) import/no-unresolved error 해결
+
+```
+$npm i -D eslint-import-resolver-typescript
+
+// eslintrc.json rule 업데이트
+...
+
+"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			},
+			"typescript": {}
+		}
+	}
+
+...
+
+```
+
+## Storybook 절대경로 설정
+
+```
+// .storybook => main.js
+const path = require('path');
+
+module.exports = {
+	stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+	addons: [
+		'@storybook/addon-links',
+		'@storybook/addon-essentials',
+		'@storybook/addon-interactions',
+		'@storybook/preset-create-react-app',
+	],
+	framework: '@storybook/react',
+	core: {
+		builder: '@storybook/builder-webpack5',
+	},
+	webpackFinal: async (config) => {
+		return {
+			...config,
+			resolve: {
+				...config.resolve,
+				alias: {
+					'@components': path.resolve(__dirname, '../src/components'),
+				},
+			},
+		};
+	},
+};
+
 ```

@@ -104,16 +104,27 @@ $npx install-peerdeps --dev eslint-config-airbnb
 		],
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
-		"react/jsx-props-no-spreading": "off"
+		"react/jsx-props-no-spreading": "off",
+		"import/no-extraneous-dependencies": [
+			"error",
+			{
+				"devDependencies": true,
+				"optionalDependencies": true,
+				"peerDependencies": true
+			}
+		],
+		"@typescript-eslint/no-var-requires": "off"
 	},
 	"settings": {
 		"import/resolver": {
 			"node": {
 				"extensions": [".js", ".jsx", ".ts", ".tsx"]
-			}
+			},
+			"typescript": {}
 		}
 	}
 }
+
 
 
 ```

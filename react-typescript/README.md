@@ -273,7 +273,23 @@ $npm i -D craco-alias
 
 ```
 
-### step 3) craco.config.js update
+### step 3) tsconfig.json update
+```
+{
+	...
+	
+	"extends": "./tsconfig.paths.json",
+	"compilerOptions": {
+		...
+	},
+	
+	...
+}
+	
+```
+
+
+### step 4) craco.config.js update
 
 ```
 // craco.cofig.js
@@ -295,7 +311,7 @@ module.exports = {
 }
 ```
 
-### step 4) import/no-unresolved error 해결
+### step 5) import/no-unresolved error 해결
 
 ```
 $npm i -D eslint-import-resolver-typescript

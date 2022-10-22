@@ -211,9 +211,6 @@ $npm i -D @emotion/babel-plugin
 
 ```
 $npm i @craco/craco
-
-// npm v7 이상인 경우
-$npm i @craco/craco --force
 ```
 
 ### step 3) package.json scripts 태그 수정

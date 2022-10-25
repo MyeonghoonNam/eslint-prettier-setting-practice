@@ -345,7 +345,7 @@ $npm i -D eslint-import-resolver-typescript
 
 ```
 
-## Storybook 절대경로 설정
+## Storybook 절대경로, emotion 설정
 
 ```
 // .storybook => main.js
@@ -364,16 +364,23 @@ module.exports = {
 		builder: '@storybook/builder-webpack5',
 	},
 	webpackFinal: async (config) => {
-		return {
-			...config,
-			resolve: {
-				...config.resolve,
-				alias: {
-					'@components': path.resolve(__dirname, '../src/components'),
-				},
-			},
+		const oneOfRule = config.module.rules.find((rule) => rule.oneOf);
+		const babelRule = oneOfRule.oneOf.find((rule) =>
+			rule.loader?.includes('babel-loader'),
+		);
+		
+		babelRule.options.presets.push('@emotion/babel-preset-css-prop');
+
+		// 절대경로 추가하기
+		config.resolve.alias = {
+			...config.resolve.alias,
+			// '@components': path.resolve(__dirname, '../src/components'),
+			// '@hooks': path.resolve(__dirname, '../src/hooks'),
 		};
+
+		return config;
 	},
 };
+
 
 ```

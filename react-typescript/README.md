@@ -139,7 +139,14 @@ $npx install-peerdeps --dev eslint-config-airbnb
         }
       }
     ]
-  }
+  },
+  "settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".ts", ".tsx", ".js", ".jsx"]
+			}
+		}
+	}
 }
 
 

@@ -32,7 +32,6 @@ $npx install-peerdeps --dev eslint-config-airbnb
 		"noFallthroughCasesInSwitch": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"noEmit": true,
 		"jsx": "react-jsx",
 		"moduleResolution": "Node",
 		"lib": ["ES2015", "DOM", "DOM.Iterable"],

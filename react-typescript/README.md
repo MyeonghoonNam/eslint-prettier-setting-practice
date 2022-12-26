@@ -32,7 +32,6 @@ $npx install-peerdeps --dev eslint-config-airbnb
 		"noFallthroughCasesInSwitch": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"noEmit": true,
 		"jsx": "react-jsx",
 		"moduleResolution": "Node",
 		"lib": ["ES2015", "DOM", "DOM.Iterable"],
@@ -70,46 +69,80 @@ $npx install-peerdeps --dev eslint-config-airbnb
 ```
 // .eslintrc.json 파일 설정
 {
-	"env": {
-		"browser": true,
-		"es2021": true
-	},
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"ecmaVersion": "latest",
-		"sourceType": "module"
-	},
-	"plugins": ["@typescript-eslint", "react-hooks"],
-	"extends": [
-		"airbnb",
-		"plugin:react/recommended",
-		"plugin:jsx-a11y/recommended",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:prettier/recommended"
-	],
-	"rules": {
-		"prettier/prettier": ["error", { "endOfLine": "auto" }],
-		"react/react-in-jsx-scope": "off",
-		"react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
-		"import/extensions": [
-			"error",
-			"ignorePackages",
-			{
-				"ts": "never",
-				"tsx": "never"
-			}
-		],
-		"react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": "warn",
-		"react/jsx-props-no-spreading": "off"
-	},
-	"settings": {
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "extends": [
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true
+      }
+    ],
+    "@typescript-eslint/no-var-requires": "off",
+    "no-nested-ternary": "off",
+    "consistent-return": "off",
+    "react/destructuring-assignment": [0, "always"],
+    "no-shadow": "off",
+    "default-param-last": 0,
+    "no-restricted-syntax": [
+      "error",
+      "WithStatement",
+      "BinaryExpression[operator='in']"
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["function-declaration", "arrow-function"],
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "{}": false
+        }
+      }
+    ]
+  },
+  "settings": {
 		"import/resolver": {
 			"node": {
-				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+				"extensions": [".ts", ".tsx", ".js", ".jsx"]
 			}
 		}
 	}
@@ -184,9 +217,6 @@ $npm i -D @emotion/babel-plugin
 
 ```
 $npm i @craco/craco
-
-// npm v7 이상인 경우
-$npm i @craco/craco --force
 ```
 
 ### step 3) package.json scripts 태그 수정
@@ -262,7 +292,23 @@ $npm i -D craco-alias
 
 ```
 
-### step 3) craco.config.js update
+### step 3) tsconfig.json update
+```
+{
+	...
+	
+	"extends": "./tsconfig.paths.json",
+	"compilerOptions": {
+		...
+	},
+	
+	...
+}
+	
+```
+
+
+### step 4) craco.config.js update
 
 ```
 // craco.cofig.js
@@ -284,7 +330,7 @@ module.exports = {
 }
 ```
 
-### step 4) import/no-unresolved error 해결
+### step 5) import/no-unresolved error 해결
 
 ```
 $npm i -D eslint-import-resolver-typescript
@@ -305,7 +351,7 @@ $npm i -D eslint-import-resolver-typescript
 
 ```
 
-## Storybook 절대경로 설정
+## Storybook 절대경로, emotion 설정
 
 ```
 // .storybook => main.js
@@ -324,16 +370,23 @@ module.exports = {
 		builder: '@storybook/builder-webpack5',
 	},
 	webpackFinal: async (config) => {
-		return {
-			...config,
-			resolve: {
-				...config.resolve,
-				alias: {
-					'@components': path.resolve(__dirname, '../src/components'),
-				},
-			},
+		const oneOfRule = config.module.rules.find((rule) => rule.oneOf);
+		const babelRule = oneOfRule.oneOf.find((rule) =>
+			rule.loader?.includes('babel-loader'),
+		);
+		
+		babelRule.options.presets.push('@emotion/babel-preset-css-prop');
+
+		// 절대경로 추가하기
+		config.resolve.alias = {
+			...config.resolve.alias,
+			// '@components': path.resolve(__dirname, '../src/components'),
+			// '@hooks': path.resolve(__dirname, '../src/hooks'),
 		};
+
+		return config;
 	},
 };
+
 
 ```

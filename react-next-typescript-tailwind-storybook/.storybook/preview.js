@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import '@styles/globals.css';
 import * as NextImage from 'next/image';
 
 NextImage.defaultProps = {

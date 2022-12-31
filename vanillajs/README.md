@@ -29,9 +29,6 @@ npx install-peerdeps --dev eslint-config-airbnb-base // airbnb js style 적용
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {
-    "prettier/prettier": ["error"]
-  }
 }
 ```
 
@@ -43,12 +40,12 @@ npx install-peerdeps --dev eslint-config-airbnb-base // airbnb js style 적용
 {
   "printWidth": 80,
   "tabWidth": 2,
-  "useTabs": true,
   "semi": true,
   "singleQuote": true,
   "trailingComma": "all",
   "bracketSpacing": true,
   "arrowParens": "always",
+	"endOfLine": "auto"
 }
 ```
 

@@ -10,12 +10,6 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"import/no-unresolved": "off",
-		"prettier/prettier": [
-			"error",
-			{
-				"endOfLine": "auto"
-			}
-		]
+		"import/no-unresolved": "off"
 	}
 }

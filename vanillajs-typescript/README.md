@@ -29,12 +29,6 @@ npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
-  "prettier/prettier": [
-			"error",
-			{
-				"endOfLine": "auto"
-			}
-		]
 }
 ```
 
@@ -46,12 +40,12 @@ npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 {
   "printWidth": 80,
   "tabWidth": 2,
-  "useTabs": true,
   "semi": true,
   "singleQuote": true,
   "trailingComma": "all",
   "bracketSpacing": true,
   "arrowParens": "always",
+  "endOfLine": "auto"
 }
 ```
 

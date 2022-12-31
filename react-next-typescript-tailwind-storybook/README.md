@@ -51,7 +51,6 @@ npx install-peerdeps --dev eslint-config-airbnb
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "import/extensions": [
@@ -117,12 +116,12 @@ npx install-peerdeps --dev eslint-config-airbnb
 {
   "printWidth": 80,
   "tabWidth": 2,
-  "useTabs": true,
   "semi": true,
   "singleQuote": true,
   "trailingComma": "all",
   "bracketSpacing": true,
-  "arrowParens": "always"
+  "arrowParens": "always",
+	"endOfLine": "auto"
 }
 ```
 

@@ -90,7 +90,6 @@ $npx install-peerdeps --dev eslint-config-airbnb
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "import/extensions": [
@@ -162,12 +161,12 @@ $npx install-peerdeps --dev eslint-config-airbnb
 {
   "printWidth": 80,
   "tabWidth": 2,
-  "useTabs": true,
   "semi": true,
   "singleQuote": true,
   "trailingComma": "all",
   "bracketSpacing": true,
   "arrowParens": "always"
+  "endOfLine": "auto"
 }
 
 ```
@@ -293,20 +292,20 @@ $npm i -D craco-alias
 ```
 
 ### step 3) tsconfig.json update
+
 ```
 {
 	...
-	
+
 	"extends": "./tsconfig.paths.json",
 	"compilerOptions": {
 		...
 	},
-	
+
 	...
 }
-	
-```
 
+```
 
 ### step 4) craco.config.js update
 
@@ -374,7 +373,7 @@ module.exports = {
 		const babelRule = oneOfRule.oneOf.find((rule) =>
 			rule.loader?.includes('babel-loader'),
 		);
-		
+
 		babelRule.options.presets.push('@emotion/babel-preset-css-prop');
 
 		// 절대경로 추가하기

@@ -173,7 +173,8 @@ module.exports = {
 
 ```
 npm i @emotion/react @emotion/styled
-npm i -D @emotion/babel-plugin babel-plugin-macros @babel/plugin-syntax-typescript @babel/preset-react
+npm i -S @emotion/serialize
+npm i -D twin.macro @emotion/babel-plugin babel-plugin-macros @babel/plugin-syntax-typescript @babel/preset-react
 ```
 
 ### make withTwin.js
@@ -245,10 +246,18 @@ module.exports = function withTwin(nextConfig) {
 import 'twin.macro';
 import { css as cssImport } from '@emotion/react';
 import styledImport from '@emotion/styled';
+import CSSInterpolation from '@emotion/serialize';
 
 declare module 'twin.macro' {
   const styled: typeof styledImport;
   const css: typeof cssImport;
+}
+
+declare module 'react' {
+  interface DOMAttributes<T> {
+    tw?: string;
+    css?: CSSInterpolation;
+  }
 }
 ```
 

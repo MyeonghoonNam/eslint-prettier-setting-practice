@@ -13,6 +13,7 @@
   },
   "plugins": ["@typescript-eslint", "react-hooks"],
   "extends": [
+    "next/core-web-vitals",
     "airbnb",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
@@ -45,6 +46,7 @@
     "@typescript-eslint/no-var-requires": "off",
     "no-nested-ternary": "off",
     "consistent-return": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "react/destructuring-assignment": [0, "always"],
     "no-shadow": "off",
     "default-param-last": 0,

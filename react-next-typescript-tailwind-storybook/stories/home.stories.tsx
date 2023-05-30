@@ -6,3 +6,7 @@ export default {
 };
 
 export const HomePage = () => <Home />;
+
+export const Text = () => {
+	return <span className="text-[blue]">Text</span>;
+};

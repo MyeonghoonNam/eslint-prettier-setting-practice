@@ -11,11 +11,9 @@ module.exports = {
 		'@storybook/addon-interactions',
 		'storybook-css-modules-preset',
 		{
-			name: '@storybook/addon-postcss',
+			name: '@storybook/addon-styling',
 			options: {
-				postcssLoaderOptions: {
-					implementation: require('postcss'),
-				},
+				postCss: true,
 			},
 		},
 	],

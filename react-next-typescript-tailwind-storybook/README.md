@@ -263,7 +263,7 @@ globals.css
 ### step 3) storybook과 tailwind 환경 통합
 
 ```
-npm i -D @storybook/addon-postcss
+npm i -D @storybook/addon-styling
 npm i -D storybook-css-modules-preset // postcss환경과 기존 css 모듈 혼합사용시 설치
 
 // .storybook/main.js
@@ -280,11 +280,9 @@ module.exports = {
 		'@storybook/addon-interactions',
 		'storybook-css-modules-preset',
 		{
-			name: '@storybook/addon-postcss',
+			name: '@storybook/addon-styling',
 			options: {
-				postcssLoaderOptions: {
-					implementation: require('postcss'),
-				},
+				postCss: true,
 			},
 		},
 	],

@@ -50,6 +50,9 @@
     "react/destructuring-assignment": [0, "always"],
     "no-shadow": "off",
     "default-param-last": 0,
+    "react/require-default-props": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
     "no-restricted-syntax": [
       "error",
       "WithStatement",

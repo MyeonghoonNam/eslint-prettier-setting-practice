@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import tw, { css } from 'twin.macro';
 
+import { Header } from '@/components';
+
 const Home = () => {
   const [value, setValue] = useState(0);
 
   return (
     <div>
-      <h1>Home</h1>
+      <Header text="Home" />
 
       <h2>max value === 3</h2>
       <span

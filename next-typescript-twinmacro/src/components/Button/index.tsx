@@ -1,8 +1,12 @@
 import VButton from './view';
 
-const Button = () => {
+interface Props {
+  text: string;
+}
+
+const Button = ({ text }: Props) => {
   const props = {
-    text: 'Button',
+    text,
   };
 
   return <VButton {...props} />;

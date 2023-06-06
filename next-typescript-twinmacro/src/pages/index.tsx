@@ -9,6 +9,7 @@ const Home = () => {
       <Header text="Home" />
       <Counter count={value} />
       <Button text="Plus" />
+      <Button text="Minus" />
     </div>
   );
 };

@@ -6,11 +6,7 @@ describe('Counter Component', () => {
   it('Render', () => {
     const count = 0;
 
-    const props = {
-      count,
-    };
-
-    render(<Counter {...props} />);
+    render(<Counter count={count} />);
 
     const container = screen.getByTestId(CONTAINER_ID);
 

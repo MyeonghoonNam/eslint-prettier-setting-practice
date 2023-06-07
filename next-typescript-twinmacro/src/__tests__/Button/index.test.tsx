@@ -8,11 +8,7 @@ describe('Button Component', () => {
   it('button render', () => {
     const text = 'button text';
 
-    const props = {
-      text,
-    };
-
-    render(<Button {...props} />);
+    render(<Button text={text} />);
 
     const container = screen.getByTestId(CONTAINER_ID);
 
@@ -24,17 +20,16 @@ describe('Button Component', () => {
     const text = 'text';
     const onClick = jest.fn();
 
-    const props = {
-      text,
-      onClick,
-    };
-
-    render(<Button {...props} />);
+    render(<Button text={text} onClick={onClick} />);
 
     const container = screen.getByTestId(CONTAINER_ID);
 
     await userEvent.click(container);
 
     expect(onClick).toBeCalled();
+  });
+
+  it('is the disabled button when the maximum value', () => {
+    //
   });
 });

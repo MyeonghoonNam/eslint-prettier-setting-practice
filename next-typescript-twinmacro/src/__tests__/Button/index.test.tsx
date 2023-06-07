@@ -29,8 +29,8 @@ describe('Button Component', () => {
     expect(onClick).toBeCalled();
   });
 
-  it('is the disabled button when the maximum value', () => {
-    const text = 'Plus';
+  it('is the disabled button when disabled value', () => {
+    const text = 'Button';
     const disabled = true;
 
     render(<Button text={text} disabled={disabled} />);

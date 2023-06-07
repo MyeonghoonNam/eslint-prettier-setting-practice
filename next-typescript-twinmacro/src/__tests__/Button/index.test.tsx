@@ -30,6 +30,13 @@ describe('Button Component', () => {
   });
 
   it('is the disabled button when the maximum value', () => {
-    //
+    const text = 'Plus';
+    const disabled = true;
+
+    render(<Button text={text} disabled={disabled} />);
+
+    const container = screen.getByTestId(CONTAINER_ID);
+
+    expect(container).toBeDisabled();
   });
 });

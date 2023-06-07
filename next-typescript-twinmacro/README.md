@@ -365,7 +365,7 @@ export default config;
 
 ```
 // jest
-npm i -D jest jest-dom jest-environment-jsdom ts-jest
+npm i -D jest jest-environment-jsdom ts-jest
 
 // @testing-library
 npm i -D @testing-library/user-event @testing-library/react @testing-library/jest-dom @testing-library/dom

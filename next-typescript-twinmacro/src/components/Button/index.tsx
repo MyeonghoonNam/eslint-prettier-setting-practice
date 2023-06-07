@@ -1,12 +1,11 @@
 import VButton from './view';
 
-interface Props {
-  text: string;
-}
+import type { ButtonProps } from './types';
 
-const Button = ({ text }: Props) => {
+const Button = ({ text, onClick }: ButtonProps) => {
   const props = {
     text,
+    onClick,
   };
 
   return <VButton {...props} />;

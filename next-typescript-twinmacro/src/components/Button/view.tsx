@@ -1,14 +1,13 @@
 import tw, { css } from 'twin.macro';
 
-interface Props {
-  text: string;
-}
+import type { ButtonProps } from './types';
 
-const VButton = ({ text }: Props) => {
+const VButton = ({ text, onClick }: ButtonProps) => {
   return (
     <button
       data-testid="button-container"
       type="button"
+      onClick={onClick}
       css={[
         tw`text-[blue]`,
         css`

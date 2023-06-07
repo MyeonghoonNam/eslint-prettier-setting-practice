@@ -1,5 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, renderHook, act } from '@testing-library/react';
+
 import Home from '@/pages';
+import { useCount } from '@/hooks';
+
 import * as Header from '@/constants/Header';
 import * as Counter from '@/constants/Counter';
 import * as Button from '@/constants/Button';
@@ -18,5 +21,16 @@ describe('Home Component', () => {
     button.forEach((el) => {
       expect(el).toBeInTheDocument();
     });
+  });
+
+  it('increment button click the button when it is not the maximum value', () => {
+    const initialState = 0;
+    const { result } = renderHook(() => useCount(initialState));
+
+    act(() => {
+      result.current.incrementCount();
+    });
+
+    expect(result.current.count).toBe(1);
   });
 });

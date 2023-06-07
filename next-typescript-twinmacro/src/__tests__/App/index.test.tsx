@@ -31,6 +31,17 @@ describe('Home Component', () => {
       result.current.incrementCount();
     });
 
-    expect(result.current.count).toBe(1);
+    expect(result.current.count).toBe(initialState + 1);
+  });
+
+  it('decrement button click the button when it is not the maximum value', () => {
+    const initialState = 5;
+    const { result } = renderHook(() => useCount(initialState));
+
+    act(() => {
+      result.current.decrementCount();
+    });
+
+    expect(result.current.count).toBe(initialState - 1);
   });
 });

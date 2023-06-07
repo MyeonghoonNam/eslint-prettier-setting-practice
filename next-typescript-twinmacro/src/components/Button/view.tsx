@@ -9,9 +9,12 @@ const VButton = ({ text, onClick }: ButtonProps) => {
       type="button"
       onClick={onClick}
       css={[
-        tw`text-[blue]`,
+        tw`text-[white]`,
         css`
-          font-size: 48px;
+          background: black;
+          border-radius: 5px;
+          margin-right: 2px;
+          padding: 2px;
         `,
       ]}
     >

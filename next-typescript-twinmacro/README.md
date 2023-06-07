@@ -286,13 +286,16 @@ module.exports = nextConfig;
 ```
 
 ## Storybook Setup
+
 ### install
+
 ```
 npx sb init --builder webpack5
 npm i -D @storybook/cli@next @emotion/babel-plugin-jsx-pragmatic @babel/plugin-transform-react-jsx
 ```
 
 ### .storybook/main.ts
+
 ```typescript
 import type { StorybookConfig } from '@storybook/nextjs';
 
@@ -354,5 +357,64 @@ const config: StorybookConfig = {
 };
 
 export default config;
+```
 
+## jest + @testring-library Setup
+
+### package install
+
+```
+// jest
+npm i -D jest jest-dom jest-environment-jsdom ts-jest
+
+// @testing-library
+npm i -D @testing-library/user-event @testing-library/react @testing-library/jest-dom @testing-library/dom
+```
+
+### make jest.setup.js
+
+```javascript
+import '@testing-library/jest-dom/extend-expect';
+```
+
+### make jest.config.js
+
+```javascript
+const nextJest = require('next/jest');
+
+const createJestConfig = nextJest({
+  dir: './',
+});
+
+const babelConfigEmotion = {
+  presets: [
+    [
+      'next/babel',
+      {
+        'preset-react': {
+          runtime: 'automatic',
+          importSource: '@emotion/react',
+        },
+      },
+    ],
+  ],
+  plugins: [
+    require.resolve('babel-plugin-macros'),
+    require.resolve('@emotion/babel-plugin'),
+  ],
+};
+
+/** @type {import('ts-jest').JestConfigWithTsJest} */
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+  testEnvironment: 'jest-environment-jsdom',
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx|mjs)$': ['babel-jest', babelConfigEmotion],
+  },
+};
+
+module.exports = createJestConfig(customJestConfig);
 ```

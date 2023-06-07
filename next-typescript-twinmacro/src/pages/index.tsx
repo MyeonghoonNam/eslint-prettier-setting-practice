@@ -1,15 +1,15 @@
-import { useState } from 'react';
 import { Header, Counter, Button } from '@/components';
+import { useCount } from '@/hooks';
 
 const Home = () => {
-  const [value, setValue] = useState(0);
+  const { count, incrementCount, decrementCount } = useCount(0);
 
   return (
     <div>
       <Header text="Home" />
-      <Counter count={value} />
-      <Button text="Plus" />
-      <Button text="Minus" />
+      <Counter count={count} />
+      <Button text="Plus" onClick={incrementCount} />
+      <Button text="Minus" onClick={decrementCount} />
     </div>
   );
 };

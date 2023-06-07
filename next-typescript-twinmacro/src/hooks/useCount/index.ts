@@ -9,7 +9,11 @@ const useCount = (initialState: InitialState) => {
     setCount((prev) => prev + 1);
   }, []);
 
-  return { count, incrementCount };
+  const decrementCount = useCallback(() => {
+    setCount((prev) => prev - 1);
+  }, []);
+
+  return { count, incrementCount, decrementCount };
 };
 
 export default useCount;

@@ -2,12 +2,13 @@ import tw, { css } from 'twin.macro';
 
 import type { ButtonProps } from './types';
 
-const VButton = ({ text, onClick }: ButtonProps) => {
+const VButton = ({ text, disabled, onClick }: ButtonProps) => {
   return (
     <button
       data-testid="button-container"
       type="button"
       onClick={onClick}
+      disabled={disabled}
       css={[
         tw`text-[white]`,
         css`
